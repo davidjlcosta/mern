@@ -7,7 +7,7 @@ var corsOptions = {
   origin: "http://localhost:8081"
 };
 
-const db = require("./app/models");
+const db = require("./api/models");
 db.mongoose
   .connect(db.url, {})
   .then(() => {

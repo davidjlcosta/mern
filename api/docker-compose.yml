@@ -18,7 +18,7 @@ services:
   mongodb:
     image: mongo:6-jammy
     ports:
-      - '7017:27017'
+      - '7017:7017'
     volumes:
       - dbdata6:/data/db
     networks:

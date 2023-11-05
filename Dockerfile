@@ -1,10 +1,10 @@
 FROM node:20-alpine
 
-WORKDIR /src
-COPY package.json package-lock.json /src/
+WORKDIR /api
+COPY package.json package-lock.json /api/
 RUN npm install --production
 
-COPY . /src
+COPY . /api
 
 EXPOSE 8085
 

@@ -1,17 +1,38 @@
 version: '3.8'
+
 services:
-  node:
-    restart: always
-    build: ./api
-    ports:
-      - 8080:8080
-    volumes:
-      - ./:/code
-  mongo:
+  mongodb:
     image: mongo:7.0.2
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
     ports:
       - 27017:27017
     volumes:
-      - mongodb:/data/db
-volumes:
- mongodb:
+      - mongovolume:/data/db
+    networks:
+      - backend
+  
+  api:
+    depends_on:
+      - mongodb
+    build: api
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      - DB_HOST=mongodb
+      - DB_USER=david
+      - DB_PASSWORD=david
+      - DB_NAME=database
+      - DB_PORT=27017
+      - CLIENT_ORIGIN=http://127.0.0.1:8888
+    networks:
+      - backend
+
+volumes: 
+  mongovolume:
+
+networks:
+  backend:

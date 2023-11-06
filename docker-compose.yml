@@ -2,25 +2,11 @@ version: '3.8'
 
 services:
   mongodb:
-    image: mongo:latest
+    image: mongo:7.0-rc-jammy
     ports:
       - 27017:27017
     volumes:
       - mongovolume:/data/db
-    networks:
-      - backend
-  
-  api:
-    depends_on:
-      - mongodb
-    build: ./api
-    ports:
-      - 8080:8080
-    networks:
-      - backend
 
 volumes: 
   mongovolume:
-
-networks:
-  backend:

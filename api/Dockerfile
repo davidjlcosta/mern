@@ -1,11 +1,7 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
-WORKDIR /src
-COPY package.json package-lock.json /src/
+WORKDIR /api
+COPY package.json .
 RUN npm install
-
-COPY . /src
-
-EXPOSE 8085
-
-CMD ["node", "server.js"]
+COPY . .
+CMD npm start

@@ -27,7 +27,6 @@ services:
       - DB_PASSWORD=david
       - DB_NAME=database
       - DB_PORT=27017
-      - CLIENT_ORIGIN=http://127.0.0.1:8888
     networks:
       - backend
 

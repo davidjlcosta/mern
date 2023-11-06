@@ -7,6 +7,20 @@ services:
       - 27017:27017
     volumes:
       - database:/data/db
+    networks:
+      - backend
+  
+  api:
+    depends_on:
+      - mongodb
+    build: ./api
+    ports:
+      - 8080:8080
+    networks:
+      - backend
 
 volumes: 
   database:
+
+networks:
+  backend:

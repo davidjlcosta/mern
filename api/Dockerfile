@@ -1,7 +1,11 @@
 FROM node:18-alpine
 
 WORKDIR /api
-COPY package.json .
-RUN npm install
-COPY . .
-CMD npm start
+COPY package.json package-lock.json /api/
+RUN npm install --production
+
+COPY . /api
+
+EXPOSE 8085
+
+CMD ["node", "server.js"]

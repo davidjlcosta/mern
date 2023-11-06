@@ -10,7 +10,7 @@ services:
   mongo:
     image: mongo:7.0.2
     ports:
-      - 7017:27017
+      - 27017:27017
     volumes:
       - mongodb:/data/db
 volumes:
